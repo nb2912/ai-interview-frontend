@@ -1,6 +1,13 @@
+'use client'
+import { useState } from 'react'
+import LoginModal from '@/components/home-page/LoginModal' // ✅ FIXED import
+
 export default function HeroSection() {
-    return (
-      <section className="w-full px-6 py-16 flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto gap-10">
+  const [showLogin, setShowLogin] = useState(false)
+
+  return (
+    <>
+      <section className="w-full px-6 py-16 flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto gap-10 relative z-10">
         <div className="text-center md:text-left">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
             Want anything to be <br className="hidden md:block" />
@@ -11,7 +18,10 @@ export default function HeroSection() {
             and an immersive mock experience.
           </p>
           <div className="flex justify-center md:justify-start">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-md shadow hover:bg-red-600 transition">
+            <button
+              className="bg-red-500 text-white px-6 py-3 rounded-md shadow hover:bg-red-600 transition"
+              onClick={() => setShowLogin(true)}
+            >
               Get Started
             </button>
           </div>
@@ -24,6 +34,16 @@ export default function HeroSection() {
           />
         </div>
       </section>
-    )
-  }
-  
+
+      {showLogin && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/30 z-40"
+            onClick={() => setShowLogin(false)}
+          />
+          <LoginModal onClose={() => setShowLogin(false)} />
+        </>
+      )}
+    </>
+  )
+}
