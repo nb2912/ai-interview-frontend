@@ -18,7 +18,7 @@ export default function HeroSection() {
         </div>
         <div>
           <img
-            src="/hero-illustration.png"
+            src="/homepage.jpg"
             alt="Interview Preparation"
             className="w-[300px] md:w-[400px]"
           />
