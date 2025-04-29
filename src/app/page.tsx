@@ -1,9 +1,13 @@
-export default function Home() {
+import Navbar from "@/components/global/Navbar"
+import HeroSection from "@/components/home-page/Hero-Section"
+import StatsSection from "@/components/home-page/StatsSection"
+
+export default function HomePage() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      
-    <h1 className="text-3xl font-bold underline"></h1>
-      Hello world!
-    </h1>
+    <main>
+      <Navbar />
+      <HeroSection />
+      <StatsSection />
+    </main>
   )
 }
