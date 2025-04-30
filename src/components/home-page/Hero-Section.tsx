@@ -1,9 +1,11 @@
 'use client'
 import { useState } from 'react'
-import LoginModal from '@/components/home-page/LoginModal' // ✅ FIXED import
+import LoginModal from '@/components/modals/LoginModal'
+import SignupModal from '@/components/modals/SignupModal' // Use consistent casing
 
 export default function HeroSection() {
   const [showLogin, setShowLogin] = useState(false)
+  const [showSignup, setShowSignup] = useState(false)
 
   return (
     <>
@@ -35,13 +37,31 @@ export default function HeroSection() {
         </div>
       </section>
 
+      {/* Login Modal */}
       {showLogin && (
         <>
-          <div
-            className="fixed inset-0 bg-black/30 z-40"
-            onClick={() => setShowLogin(false)}
+          <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setShowLogin(false)} />
+          <LoginModal
+            onClose={() => setShowLogin(false)}
+            onSwitchToSignup={() => {
+              setShowLogin(false)
+              setShowSignup(true)
+            }}
           />
-          <LoginModal onClose={() => setShowLogin(false)} />
+        </>
+      )}
+
+      {/* Signup Modal */}
+      {showSignup && (
+        <>
+          <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setShowSignup(false)} />
+          <SignupModal
+            onClose={() => setShowSignup(false)}
+            onSwitchToLogin={() => {
+              setShowSignup(false)
+              setShowLogin(true)
+            }}
+          />
         </>
       )}
     </>
