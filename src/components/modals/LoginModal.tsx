@@ -14,6 +14,7 @@ export default function LoginModal({ onClose, onSwitchToSignup }: LoginModalProp
           <h2 className="text-lg font-semibold">Logo PREP TRAIL</h2>
           <h3 className="text-2xl font-bold mb-6">WELCOME BACK</h3>
         </div>
+        
         <input
           type="email"
           placeholder="Enter email"
