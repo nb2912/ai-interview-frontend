@@ -1,8 +1,8 @@
-// LoginModal.tsx
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
+import { useRouter } from 'next/navigation'; // ✅ Import useRouter
 import { FcGoogle } from 'react-icons/fc';
 import { X } from 'lucide-react';
 
@@ -13,12 +13,18 @@ interface LoginModalProps {
 }
 
 export default function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProps) {
+  const router = useRouter(); // ✅ Initialize router
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Logging in with:', email, password);
+
+    // You can add authentication logic here (API call, validation, etc.)
+
+    router.push('/dashboard'); // ✅ Redirect to dashboard
+    onClose(); // Optional: Close modal after login
   };
 
   return (

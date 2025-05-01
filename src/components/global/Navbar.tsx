@@ -1,4 +1,5 @@
 'use client'
+
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
@@ -16,7 +17,7 @@ export default function Navbar() {
 
         {/* CENTER & RIGHT (for desktop) */}
         <div className="hidden md:flex flex-1 items-center justify-end space-x-6 text-sm font-medium">
-          <a href="#about">About</a>
+          <Link href="/about">About</Link>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="#testimonials">Testimonials</a>
@@ -37,7 +38,7 @@ export default function Navbar() {
       {/* MOBILE DROPDOWN */}
       {isOpen && (
         <div className="flex flex-col md:hidden mt-4 space-y-3 text-sm font-medium px-4">
-          <a href="#about">About</a>
+          <Link href="/about">About</Link>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="#testimonials">Testimonials</a>
