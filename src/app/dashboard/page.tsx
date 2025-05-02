@@ -1,6 +1,13 @@
 'use client';
 
-import { FiActivity, FiCalendar, FiAward, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
+import {
+  FiActivity,
+  FiCalendar,
+  FiAward,
+  FiUser,
+  FiSettings,
+  FiLogOut
+} from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 
@@ -33,48 +40,39 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
-            <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-              AI Interview Prep
-            </span>
+      <header className="bg-white/80 shadow-md backdrop-blur-sm sticky top-0 z-20">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text">
+            PrepTrail Dashboard
           </h1>
 
           {/* Profile Dropdown */}
           <div className="relative" ref={profileRef}>
             <button
-              className="p-2 rounded-full hover:bg-gray-100"
+              className="p-2 rounded-full hover:bg-gray-100 transition"
               onClick={() => setIsProfileOpen(!isProfileOpen)}
             >
-              <FiUser className="h-5 w-5 text-gray-500" />
+              <FiUser className="h-5 w-5 text-gray-700" />
             </button>
-
             {isProfileOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
-                <button
-                  onClick={() => {
-                    setIsProfileOpen(false);
-                    alert('Profile page under construction');
-                  }}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  View Profile
-                </button>
-                <button
-                  onClick={() => {
-                    setIsProfileOpen(false);
-                    alert('Settings page under construction');
-                  }}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  Settings
-                </button>
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl z-30">
+                {['View Profile', 'Settings'].map((label) => (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      setIsProfileOpen(false);
+                      alert(`${label} page under construction`);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    {label}
+                  </button>
+                ))}
                 <button
                   onClick={() => router.push('/')}
-                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                 >
                   Logout
                 </button>
@@ -85,22 +83,22 @@ export default function DashboardPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-6 py-10">
         {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 mb-8 text-white">
-          <h2 className="text-2xl font-bold mb-2">Welcome back, Nihal!</h2>
-          <p className="opacity-90">Ready for your next interview practice session?</p>
+        <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-8 rounded-2xl shadow-md mb-10">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, Nihal 👋</h2>
+          <p className="opacity-90">Your next opportunity is just one session away.</p>
           <button
-            className="mt-4 px-6 py-2 bg-white text-orange-600 rounded-lg font-medium hover:bg-gray-100 transition-colors"
             onClick={() => router.push('/interview/start')}
+            className="mt-4 inline-block px-6 py-2 bg-white text-orange-600 font-semibold rounded-lg shadow hover:bg-gray-100 transition"
           >
             Start New Session
           </button>
         </div>
 
         {/* Resume Upload */}
-        <div className="bg-white shadow rounded-lg p-6 mb-8">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Upload Your Resume (PDF only)</h3>
+        <div className="bg-white/70 border border-orange-100 shadow-md backdrop-blur rounded-xl p-6 mb-10">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">Upload Your Resume (PDF only)</h3>
           <form className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <input
               type="file"
@@ -115,37 +113,27 @@ export default function DashboardPage() {
                   alert("Please upload a valid PDF file.");
                 }
               }}
-              className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
-                file:rounded-lg file:border-0
-                file:text-sm file:font-semibold
-                file:bg-orange-50 file:text-orange-700
-                hover:file:bg-orange-100"
+              className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 text-sm text-gray-600"
             />
-            {resumeName && (
-              <span className="text-sm text-green-600">Uploaded: {resumeName}</span>
-            )}
+            {resumeName && <span className="text-sm text-green-600">Uploaded: {resumeName}</span>}
           </form>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {stats.map((stat) => (
-            <div key={stat.name} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="px-4 py-5 sm:p-6">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-orange-100 rounded-md p-3">
-                    <FiActivity className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div className="ml-5 w-0 flex-1">
-                    <dt className="text-sm font-medium text-gray-500 truncate">{stat.name}</dt>
-                    <dd className="flex items-baseline">
-                      <div className="text-2xl font-semibold text-gray-900">{stat.value}</div>
-                      <div className={`ml-2 flex items-baseline text-sm font-semibold ${
-                        stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                      }`}>
-                        {stat.change}
-                      </div>
-                    </dd>
+            <div key={stat.name} className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-all border border-orange-100">
+              <div className="flex items-center gap-4">
+                <div className="bg-orange-100 p-3 rounded-full">
+                  <FiActivity className="h-6 w-6 text-orange-600" />
+                </div>
+                <div>
+                  <h4 className="text-sm text-gray-500">{stat.name}</h4>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xl font-bold">{stat.value}</span>
+                    <span className={`text-sm font-semibold ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
+                      {stat.change}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -154,33 +142,27 @@ export default function DashboardPage() {
         </div>
 
         {/* Recent Sessions */}
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-8">
-          <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-            <h3 className="text-lg leading-6 font-medium text-gray-900 flex items-center">
-              <FiCalendar className="mr-2 text-orange-500" />
-              Recent Practice Sessions
-            </h3>
+        <div className="bg-white/80 border border-gray-100 rounded-xl shadow-lg mb-10">
+          <div className="px-6 py-4 border-b border-gray-200 flex items-center">
+            <FiCalendar className="mr-2 text-orange-500" />
+            <h3 className="text-lg font-semibold text-gray-800">Recent Practice Sessions</h3>
           </div>
-          <div className="bg-white divide-y divide-gray-200">
+          <div>
             {recentSessions.map((session) => (
-              <div key={session.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      session.type === 'Technical' 
-                        ? 'bg-orange-100 text-orange-800' 
-                        : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {session.type}
-                    </div>
-                    <div className="ml-4 text-sm text-gray-500">{session.date}</div>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-lg font-medium text-gray-900 mr-2">{session.score}</span>
-                    <button className="text-orange-600 hover:text-orange-800 text-sm font-medium">
-                      View Details
-                    </button>
-                  </div>
+              <div key={session.id} className="px-6 py-4 flex justify-between items-center hover:bg-orange-50 transition">
+                <div className="flex items-center space-x-4">
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    session.type === 'Technical'
+                      ? 'bg-orange-100 text-orange-800'
+                      : 'bg-blue-100 text-blue-800'
+                  }`}>
+                    {session.type}
+                  </span>
+                  <span className="text-sm text-gray-600">{session.date}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-800 font-semibold">{session.score}</span>
+                  <button className="text-orange-600 hover:text-orange-800 text-sm font-medium">View</button>
                 </div>
               </div>
             ))}
@@ -188,52 +170,55 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="bg-white overflow-hidden shadow rounded-lg p-6 text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-orange-100">
-              <FiAward className="h-6 w-6 text-orange-600" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {quickActions.map(({ icon: Icon, title, desc, btnText, color }, idx) => (
+            <div
+              key={idx}
+              className="bg-white shadow-md border border-orange-100 p-6 rounded-xl text-center hover:shadow-xl transition"
+            >
+              <div className={`mx-auto h-12 w-12 rounded-full flex items-center justify-center ${color.bg}`}>
+                <Icon className={`h-6 w-6 ${color.icon}`} />
+              </div>
+              <h4 className="mt-4 text-lg font-semibold text-gray-800">{title}</h4>
+              <p className="mt-1 text-sm text-gray-500">{desc}</p>
+              <button className={`mt-4 px-4 py-2 text-sm font-medium rounded-md text-white ${color.btn} hover:opacity-90 transition`}>
+                {btnText}
+              </button>
             </div>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Progress Report</h3>
-            <p className="mt-2 text-sm text-gray-500">See your improvement over time</p>
-            <button className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700">
-              View Report
-            </button>
-          </div>
-
-          <div className="bg-white overflow-hidden shadow rounded-lg p-6 text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-              <FiSettings className="h-6 w-6 text-red-600" />
-            </div>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Weak Areas</h3>
-            <p className="mt-2 text-sm text-gray-500">Focus on your challenges</p>
-            <button className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
-              Practice Now
-            </button>
-          </div>
-
-          <div className="bg-white overflow-hidden shadow rounded-lg p-6 text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-orange-100">
-              <FiUser className="h-6 w-6 text-orange-600" />
-            </div>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Mock Interviews</h3>
-            <p className="mt-2 text-sm text-gray-500">Simulate real interviews</p>
-            <button className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700">
-              Schedule Now
-            </button>
-          </div>
-
-          <div className="bg-white overflow-hidden shadow rounded-lg p-6 text-center">
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-              <FiActivity className="h-6 w-6 text-red-600" />
-            </div>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Resources</h3>
-            <p className="mt-2 text-sm text-gray-500">Study materials & tips</p>
-            <button className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
-              Browse
-            </button>
-          </div>
+          ))}
         </div>
       </main>
     </div>
   );
 }
+
+const quickActions = [
+  {
+    title: 'Progress Report',
+    desc: 'See your improvement over time',
+    btnText: 'View Report',
+    icon: FiAward,
+    color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
+  },
+  {
+    title: 'Weak Areas',
+    desc: 'Focus on your challenges',
+    btnText: 'Practice Now',
+    icon: FiSettings,
+    color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
+  },
+  {
+    title: 'Mock Interviews',
+    desc: 'Simulate real interviews',
+    btnText: 'Schedule Now',
+    icon: FiUser,
+    color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
+  },
+  {
+    title: 'Resources',
+    desc: 'Study materials & tips',
+    btnText: 'Browse',
+    icon: FiActivity,
+    color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
+  }
+];
