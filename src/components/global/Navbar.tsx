@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="hidden md:flex flex-1 items-center justify-end space-x-6 text-sm font-medium text-gray-700">
           <Link href="/about" className="hover:text-orange-600 transition">About</Link>
           <Link href="/features" className="hover:text-orange-600 transition">Features</Link>
-          <a href="#pricing" className="hover:text-orange-600 transition">Pricing</a>
+          <a href="/pricing" className="hover:text-orange-600 transition">Pricing</a>
           <a href="#testimonials" className="hover:text-orange-600 transition">Testimonials</a>
           <a href="#help" className="hover:text-orange-600 transition">Help</a>
           <button className="ml-4 border border-red-500 text-red-500 px-4 py-1 rounded-full hover:bg-red-100 transition">
