@@ -1,3 +1,4 @@
+import { label } from 'framer-motion/client';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function Footer() {
@@ -30,7 +31,8 @@ export default function Footer() {
               { label: 'About Us', href: '/about' },
               { label: 'Features', href: '/features' },
               { label: 'Pricing', href: '/pricing' },
-              { label: 'Contact', href: '/contact' },
+              { label: 'Testimonials', href: '/testimonial' },
+              {label: 'Help', href: '/help' }, // Changed from `#help` to route-based navigation
             ].map((link) => (
               <li key={link.href}>
                 <a
