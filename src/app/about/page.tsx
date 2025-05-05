@@ -40,6 +40,7 @@ export default function AboutPage() {
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300 ease-in-out shadow-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            aria-label="Get Started"
           >
             Get Started
           </motion.button>
@@ -47,6 +48,7 @@ export default function AboutPage() {
             className="bg-transparent hover:bg-orange-100 text-orange-500 font-semibold py-3 px-6 rounded-full border border-orange-500 transition duration-300 ease-in-out shadow-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            aria-label="Learn More"
           >
             Learn More
           </motion.button>
@@ -81,10 +83,10 @@ export default function AboutPage() {
       >
         <h2 className="text-3xl font-bold text-center text-orange-700 mb-16">Unlock Your Potential in Three Simple Steps</h2>
         <motion.div className="grid md:grid-cols-3 gap-12 text-center">
-          {[
-            ['1. Craft Your Profile', 'Share your career aspirations and background.', <FaUsers className="mx-auto text-3xl text-orange-500 mb-4" />],
-            ['2. Dive into Practice', 'Engage with AI-powered simulations for diverse interview scenarios.', <FaRocket className="mx-auto text-3xl text-orange-500 mb-4" />],
-            ['3. Analyze and Improve', 'Receive detailed feedback and track your progress with insightful analytics.', <FaChartLine className="mx-auto text-3xl text-orange-500 mb-4" />],
+          {[ 
+            ['1. Craft Your Profile', 'Share your career aspirations and background.', <FaUsers className="mx-auto text-3xl text-orange-500 mb-4" aria-label="Profile" />],
+            ['2. Dive into Practice', 'Engage with AI-powered simulations for diverse interview scenarios.', <FaRocket className="mx-auto text-3xl text-orange-500 mb-4" aria-label="Practice" />],
+            ['3. Analyze and Improve', 'Receive detailed feedback and track your progress with insightful analytics.', <FaChartLine className="mx-auto text-3xl text-orange-500 mb-4" aria-label="Analytics" />],
           ].map(([title, desc, icon], idx) => (
             <motion.div key={idx} variants={fadeInUp} className="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition duration-300">
               {icon}
@@ -105,13 +107,13 @@ export default function AboutPage() {
       >
         <h2 className="text-3xl font-bold text-center text-orange-700 mb-16">Why Choose Our AI-Powered Platform?</h2>
         <motion.div variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {[
-            ['Realistic Simulations', 'Experience interview scenarios that mirror real-world challenges.', <FaLightbulb className="text-2xl text-orange-500 mb-3" />],
-            ['Instant, Actionable Feedback', 'Get immediate insights and tips to refine your interview techniques.', <FaCommentDots className="text-2xl text-orange-500 mb-3" />],
-            ['Adaptive Learning Paths', 'Our system adjusts to your skill level, ensuring continuous growth.', <FaCog className="text-2xl text-orange-500 mb-3" />],
-            ['Behavioral Mastery', 'Learn to effectively communicate your experiences using proven methodologies.', <FaHandshake className="text-2xl text-orange-500 mb-3" />],
-            ['Technical Skill Enhancement', 'Practice coding challenges and technical questions with helpful guidance.', <FaCode className="text-2xl text-orange-500 mb-3" />],
-            ['Track Your Success', 'Monitor your progress with detailed analytics and celebrate your achievements.', <FaTrophy className="text-2xl text-orange-500 mb-3" />],
+          {[ 
+            ['Realistic Simulations', 'Experience interview scenarios that mirror real-world challenges.', <FaLightbulb className="text-2xl text-orange-500 mb-3" aria-label="Simulations" />],
+            ['Instant, Actionable Feedback', 'Get immediate insights and tips to refine your interview techniques.', <FaCommentDots className="text-2xl text-orange-500 mb-3" aria-label="Feedback" />],
+            ['Adaptive Learning Paths', 'Our system adjusts to your skill level, ensuring continuous growth.', <FaCog className="text-2xl text-orange-500 mb-3" aria-label="Learning Paths" />],
+            ['Behavioral Mastery', 'Learn to effectively communicate your experiences using proven methodologies.', <FaHandshake className="text-2xl text-orange-500 mb-3" aria-label="Behavioral Mastery" />],
+            ['Technical Skill Enhancement', 'Practice coding challenges and technical questions with helpful guidance.', <FaCode className="text-2xl text-orange-500 mb-3" aria-label="Technical Skills" />],
+            ['Track Your Success', 'Monitor your progress with detailed analytics and celebrate your achievements.', <FaTrophy className="text-2xl text-orange-500 mb-3" aria-label="Track Success" />],
           ].map(([title, desc, icon], idx) => (
             <motion.div key={idx} variants={fadeInUp} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300">
               <div className="flex items-center mb-4">
@@ -135,8 +137,8 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-orange-700 mb-12">Meet the Minds Behind the Innovation</h2>
           <motion.div variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              { name: 'Alice Johnson', title: 'CEO & Founder', imageUrl: '/profil.jpg' }, // Changed to local path
+            {[ 
+              { name: 'Alice Johnson', title: 'CEO & Founder', imageUrl: '/profil.jpg' },
               { name: 'Bob Williams', title: 'Lead Developer', imageUrl: '/profil.jpg' },
               { name: 'Catherine Davis', title: 'AI Specialist', imageUrl: '/profil.jpg' },
               { name: 'David Garcia', title: 'UX/UI Designer', imageUrl: '/profil.jpg' },
@@ -144,7 +146,7 @@ export default function AboutPage() {
               { name: 'Frank Martinez', title: 'Customer Success Lead', imageUrl: '/profil.jpg' },
             ].map((member, idx) => (
               <motion.div key={idx} variants={fadeInUp} className="bg-white rounded-lg shadow-md p-6 text-center">
-                <img src={member.imageUrl} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+                <img src={member.imageUrl} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover" loading="lazy" />
                 <h3 className="text-lg font-semibold text-gray-900">{member.name}</h3>
                 <p className="text-sm text-gray-600">{member.title}</p>
               </motion.div>

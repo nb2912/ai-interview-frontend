@@ -43,9 +43,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-700">Choose Your Plan</h1>
-            <p className="mt-4 text-lg text-gray-600">
-              No hidden fees. Cancel anytime.
-            </p>
+            <p className="mt-4 text-lg text-gray-600">No hidden fees. Cancel anytime.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -83,7 +81,6 @@ export default function PricingPage() {
         </div>
       </main>
 
-      {/* Footer Section */}
       <Footer />
     </div>
   );
