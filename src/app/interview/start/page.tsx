@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 export default function StartInterviewPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [permissionGranted, setPermissionGranted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isCaptionEnabled, setIsCaptionEnabled] = useState(false);
   const router = useRouter();
 
   const questions = [
@@ -66,10 +68,19 @@ export default function StartInterviewPage() {
             ref={videoRef}
             autoPlay
             playsInline
-            muted
-            className="w-full aspect-video rounded-lg border border-gray-200"
+            muted={isMuted}
+            className="w-full aspect-video rounded-lg border border-gray-200 object-cover"
             style={{ transform: 'scaleX(1)' }}
           />
+          <div className="mt-4 flex justify-between">
+            {/* Mute Button */}
+            <button
+              onClick={() => setIsMuted((prev) => !prev)}
+              className="px-4 py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700"
+            >
+              {isMuted ? 'Unmute' : 'Mute'}
+            </button>
+          </div>
         </div>
 
         {/* Question Navigator */}
@@ -132,7 +143,15 @@ export default function StartInterviewPage() {
       {/* Transcript Viewer */}
       <div className="w-full max-w-6xl bg-white border border-neutral-200 shadow p-6 rounded-xl h-52 overflow-y-auto">
         <h2 className="text-lg font-semibold text-orange-700 mb-3">Live Transcript</h2>
-        <p className="text-sm text-orange-400 italic">Real-time transcribed audio will appear here...</p>
+        <p className="text-sm text-orange-400 italic">
+          {isCaptionEnabled ? 'Real-time transcribed audio will appear here...' : 'Captions are disabled'}
+        </p>
+        <button
+          onClick={() => setIsCaptionEnabled((prev) => !prev)}
+          className="mt-4 px-4 py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700"
+        >
+          {isCaptionEnabled ? 'Disable Captions' : 'Enable Captions'}
+        </button>
       </div>
     </div>
   );

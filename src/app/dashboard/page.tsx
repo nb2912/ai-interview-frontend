@@ -9,7 +9,7 @@ import {
   FiLogOut
 } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -39,6 +39,37 @@ export default function DashboardPage() {
     { id: 3, type: 'Technical', date: '2023-11-05', score: '92%' },
   ];
 
+  const quickActions = useMemo(() => [
+    {
+      title: 'Progress Report',
+      desc: 'See your improvement over time',
+      btnText: 'View Report',
+      icon: FiAward,
+      color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
+    },
+    {
+      title: 'Weak Areas',
+      desc: 'Focus on your challenges',
+      btnText: 'Practice Now',
+      icon: FiSettings,
+      color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
+    },
+    {
+      title: 'Mock Interviews',
+      desc: 'Simulate real interviews',
+      btnText: 'Schedule Now',
+      icon: FiUser,
+      color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
+    },
+    {
+      title: 'Resources',
+      desc: 'Study materials & tips',
+      btnText: 'Browse',
+      icon: FiActivity,
+      color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
+    }
+  ], []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100">
       {/* Header */}
@@ -53,6 +84,7 @@ export default function DashboardPage() {
             <button
               className="p-2 rounded-full hover:bg-gray-100 transition"
               onClick={() => setIsProfileOpen(!isProfileOpen)}
+              aria-label="Profile settings"
             >
               <FiUser className="h-5 w-5 text-gray-700" />
             </button>
@@ -114,6 +146,7 @@ export default function DashboardPage() {
                 }
               }}
               className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 text-sm text-gray-600"
+              aria-label="Upload your resume"
             />
             {resumeName && <span className="text-sm text-green-600">Uploaded: {resumeName}</span>}
           </form>
@@ -151,11 +184,7 @@ export default function DashboardPage() {
             {recentSessions.map((session) => (
               <div key={session.id} className="px-6 py-4 flex justify-between items-center hover:bg-orange-50 transition">
                 <div className="flex items-center space-x-4">
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    session.type === 'Technical'
-                      ? 'bg-orange-100 text-orange-800'
-                      : 'bg-blue-100 text-blue-800'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${session.type === 'Technical' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'}`}>
                     {session.type}
                   </span>
                   <span className="text-sm text-gray-600">{session.date}</span>
@@ -191,34 +220,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-const quickActions = [
-  {
-    title: 'Progress Report',
-    desc: 'See your improvement over time',
-    btnText: 'View Report',
-    icon: FiAward,
-    color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
-  },
-  {
-    title: 'Weak Areas',
-    desc: 'Focus on your challenges',
-    btnText: 'Practice Now',
-    icon: FiSettings,
-    color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
-  },
-  {
-    title: 'Mock Interviews',
-    desc: 'Simulate real interviews',
-    btnText: 'Schedule Now',
-    icon: FiUser,
-    color: { bg: 'bg-orange-100', icon: 'text-orange-600', btn: 'bg-orange-600' }
-  },
-  {
-    title: 'Resources',
-    desc: 'Study materials & tips',
-    btnText: 'Browse',
-    icon: FiActivity,
-    color: { bg: 'bg-red-100', icon: 'text-red-600', btn: 'bg-red-600' }
-  }
-];
