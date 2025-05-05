@@ -71,15 +71,13 @@ export default function DashboardPage() {
   ], []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 text-gray-800">
       {/* Header */}
       <header className="bg-white/80 shadow-md backdrop-blur-sm sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text">
             PrepTrail Dashboard
           </h1>
-
-          {/* Profile Dropdown */}
           <div className="relative" ref={profileRef}>
             <button
               className="p-2 rounded-full hover:bg-gray-100 transition"
@@ -115,23 +113,23 @@ export default function DashboardPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-10">
+      <main className="max-w-7xl mx-auto px-6 py-10 space-y-10">
         {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-8 rounded-2xl shadow-md mb-10">
-          <h2 className="text-2xl font-bold mb-2">Welcome back, Nihal 👋</h2>
+        <section className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-8 rounded-2xl shadow-md">
+          <h2 className="text-2xl font-bold mb-1">Welcome back, Nihal 👋</h2>
           <p className="opacity-90">Your next opportunity is just one session away.</p>
           <button
             onClick={() => router.push('/interview/start')}
-            className="mt-4 inline-block px-6 py-2 bg-white text-orange-600 font-semibold rounded-lg shadow hover:bg-gray-100 transition"
+            className="mt-5 px-5 py-2 bg-white text-orange-600 font-semibold rounded-lg hover:bg-gray-100 transition"
           >
             Start New Session
           </button>
-        </div>
+        </section>
 
         {/* Resume Upload */}
-        <div className="bg-white/70 border border-orange-100 shadow-md backdrop-blur rounded-xl p-6 mb-10">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">Upload Your Resume (PDF only)</h3>
-          <form className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <section className="bg-white/70 border border-orange-100 shadow-md backdrop-blur rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-3">Upload Your Resume (PDF only)</h3>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <input
               type="file"
               accept="application/pdf"
@@ -145,17 +143,16 @@ export default function DashboardPage() {
                   alert("Please upload a valid PDF file.");
                 }
               }}
-              className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 text-sm text-gray-600"
-              aria-label="Upload your resume"
+              className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200"
             />
             {resumeName && <span className="text-sm text-green-600">Uploaded: {resumeName}</span>}
-          </form>
-        </div>
+          </div>
+        </section>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {stats.map((stat) => (
-            <div key={stat.name} className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-all border border-orange-100">
+            <div key={stat.name} className="bg-white p-6 rounded-xl shadow border border-orange-100 hover:shadow-lg transition-all">
               <div className="flex items-center gap-4">
                 <div className="bg-orange-100 p-3 rounded-full">
                   <FiActivity className="h-6 w-6 text-orange-600" />
@@ -172,13 +169,13 @@ export default function DashboardPage() {
               </div>
             </div>
           ))}
-        </div>
+        </section>
 
         {/* Recent Sessions */}
-        <div className="bg-white/80 border border-gray-100 rounded-xl shadow-lg mb-10">
+        <section className="bg-white/80 border border-gray-100 rounded-xl shadow-lg">
           <div className="px-6 py-4 border-b border-gray-200 flex items-center">
             <FiCalendar className="mr-2 text-orange-500" />
-            <h3 className="text-lg font-semibold text-gray-800">Recent Practice Sessions</h3>
+            <h3 className="text-lg font-semibold">Recent Practice Sessions</h3>
           </div>
           <div>
             {recentSessions.map((session) => (
@@ -191,31 +188,31 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-800 font-semibold">{session.score}</span>
-                  <button className="text-orange-600 hover:text-orange-800 text-sm font-medium">View</button>
+                  <button className="text-orange-600 hover:underline text-sm font-medium">View</button>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {quickActions.map(({ icon: Icon, title, desc, btnText, color }, idx) => (
             <div
               key={idx}
-              className="bg-white shadow-md border border-orange-100 p-6 rounded-xl text-center hover:shadow-xl transition"
+              className="bg-white p-6 rounded-xl border border-orange-100 shadow hover:shadow-xl transition text-center"
             >
               <div className={`mx-auto h-12 w-12 rounded-full flex items-center justify-center ${color.bg}`}>
                 <Icon className={`h-6 w-6 ${color.icon}`} />
               </div>
-              <h4 className="mt-4 text-lg font-semibold text-gray-800">{title}</h4>
+              <h4 className="mt-4 text-lg font-semibold">{title}</h4>
               <p className="mt-1 text-sm text-gray-500">{desc}</p>
               <button className={`mt-4 px-4 py-2 text-sm font-medium rounded-md text-white ${color.btn} hover:opacity-90 transition`}>
                 {btnText}
               </button>
             </div>
           ))}
-        </div>
+        </section>
       </main>
     </div>
   );

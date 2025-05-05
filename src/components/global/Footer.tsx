@@ -32,7 +32,7 @@ export default function Footer() {
               { label: 'Features', href: '/features' },
               { label: 'Pricing', href: '/pricing' },
               { label: 'Testimonials', href: '/testimonial' },
-              {label: 'Help', href: '/help' }, // Changed from `#help` to route-based navigation
+              {label: 'Help', href: '/help' }, 
             ].map((link) => (
               <li key={link.href}>
                 <a
